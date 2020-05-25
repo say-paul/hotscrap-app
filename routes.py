@@ -28,6 +28,3 @@ def check_otp():
         return jsonify({'description': 'authenticated'}), 200
     else:
         return jsonify({'description': 'unauthorized'}), 403
-
-if __name__ == '__main__':
-    app.run()
