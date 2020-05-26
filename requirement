@@ -1,2 +1,6 @@
-django
+flask
+Flask-RESTful
+pyaml
 mysqlclient
+gunicorn
+mysql-connector-python
