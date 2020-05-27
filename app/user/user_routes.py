@@ -15,6 +15,6 @@ class User(Resource):
         email=request.form["Email"]
         account_type=request.form["account_type"]
         err=add_user.addUser(mobile_num,name,email,account_type)
-        if err:
-            return response.styler(400)
-        return response.styler(204)
+        if err != True:
+            return response.styler(204)
+        return response.styler(400)

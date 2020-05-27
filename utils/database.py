@@ -19,10 +19,13 @@ class Db:
             print("Error: {}".format(error))
             return ""
         return self.cursor.column_names, self.cursor.fetchall()
+
     def insert(self,query,params):
         try:
             self.cursor.execute(query, params)
+            print(self.cursor.rowcount, "record inserted.")
         except mariadb.Error as error:
             print("Error: {}".format(error))
             return True
-        return False
+        self.mariadb_connection.commit()
+        return self.cursor.lastrowid
