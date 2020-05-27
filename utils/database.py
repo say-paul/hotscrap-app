@@ -19,3 +19,10 @@ class Db:
             print("Error: {}".format(error))
             return ""
         return self.cursor.column_names, self.cursor.fetchall()
+    def insert(self,query,params):
+        try:
+            self.cursor.execute(query, params)
+        except mariadb.Error as error:
+            print("Error: {}".format(error))
+            return True
+        return False
