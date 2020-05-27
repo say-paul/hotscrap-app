@@ -13,7 +13,6 @@ class User(Resource):
     def post(self,mobile_num):
         name=request.form["Name"]
         email=request.form["Email"]
-        mobile_num=request.form["mobile_num"]
         account_type=request.form["account_type"]
         err=add_user.addUser(mobile_num,name,email,account_type)
         if err:
