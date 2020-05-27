@@ -1,8 +1,6 @@
 from flask_restful import Resource
 from utils import response
-from user import add_user 
-from user import get_user 
-
+from user import add_user,get_user
 from flask import request
 
 class User(Resource):
