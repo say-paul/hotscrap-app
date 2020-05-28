@@ -7,3 +7,4 @@ def db_config():
     with open(path + "/env/" + env + ".yml", 'r') as f:
         config = yaml.safe_load(f)
     return config
+    

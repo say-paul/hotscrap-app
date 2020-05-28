@@ -2,3 +2,5 @@ db_host: 127.0.0.1
 db_port: 3306
 db_username: djangouser
 db_password: lemongrass
+
+secret: X0yA2739z455wKcPl1e21B6h0y8T9061391o5ql9iY6uo34NDm
