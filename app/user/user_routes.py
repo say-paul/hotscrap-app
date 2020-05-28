@@ -18,3 +18,5 @@ class User(Resource):
         if err != True:
             return response.styler(204)
         return response.styler(400)
+
+        
