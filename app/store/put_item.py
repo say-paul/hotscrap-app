@@ -1,6 +1,6 @@
 from utils import database
 
-def updateInfo(ItemId,ItemName,ItemUnit,CurrentRate):
+def updateInfo(ItemID,ItemName,ItemUnit,CurrentRate):
     db= database.Db
     query=("UPDATE ItemRateChart SET ItemName=%s,ItemUnit=%s,CurrentRate=%s WHERE ItemID=%s")
     params=(ItemName,ItemUnit,CurrentRate)

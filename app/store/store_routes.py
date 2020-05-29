@@ -9,7 +9,7 @@ class Item(Resource):
         itemdetails = dict(zip(key,data[0]))
         return response.styler(200, itemdetails)
 
-   def post(self,ItemId):
+   def post(self,ItemID):
         ItemName=request.form["ItemName"]
         ItemUnit=request.form["ItemUnit"]
         CurrentRate=request.form["CurrentRate"]
@@ -18,8 +18,14 @@ class Item(Resource):
             return response.styler(204)
         return response.styler(400)
 
-    def put():
-        
+    def put(self,IteemID):
+        ItemName=request.form["ItemName"]
+        ItemUnit=request.form["ItemUnit"]
+        CurrentRate=request.form["CurrentRate"]
+        err=put_item.updateInfo(ItemID,ItemName,ItemUnit,CurrentRate)
+        if err!=True:
+            return response.styler(204)
+        return response.styler(400)
 
     def delete(self,ItemID):
         err=delete_item.dltItem(ItemID)
