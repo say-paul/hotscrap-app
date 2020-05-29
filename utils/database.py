@@ -29,4 +29,23 @@ class Db:
             return True
         self.mariadb_connection.commit()
         return self.cursor.lastrowid
-        
+
+    def update(self,query,params):
+        try:
+            self.cursor.execute(query,params)
+            print(self.cursor.rowcount, "record updated")
+        except mariadb.Error as error:
+            print("Error: {}".format(error))
+            return True
+        self.mariadb_connection.commit()
+        return ............
+
+     def delete(self,query,params):
+        try:
+            self.cursor.execute(query,params)
+            print(self.cursor.rowcount, "row deleted")
+        except mariadb.Error as error:
+            print("Error: {}".format(error))
+            return True
+        self.mariadb_connection.commit()
+        return ............

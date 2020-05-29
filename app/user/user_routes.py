@@ -1,14 +1,9 @@
 from flask_restful import Resource
 from utils import response
-<<<<<<< HEAD
 from user import add_user,get_user
 from flask import request
 
 class User(Resource):
-=======
-from user import get_user
-class GetUser(Resource):
->>>>>>> store items branch committed
     def get(self,mobile_num):
         key, data = get_user.findUserByMob(mobile_num)
         if len(data) == 0:
