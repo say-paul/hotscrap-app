@@ -7,19 +7,19 @@ class Item(Resource):
         key, data = get_item.findItem(ItemID)
         if len(data) == 0:
             return response.styler(404)
-        itemdetails = dict(zip(key,data))
+        itemdetails = dict(zip(key,data[0]))
         return response.styler(200, itemdetails)
 
     def post(self,ItemID):
         ItemName= request.form["ItemName"]
         ItemUnit= request.form["ItemUnit"]
         CurrentRate= request.form["CurrentRate"]
-        err=post_item.addItem(ItemName,ItemUnit,CurrentRate)
+        err=post_item.addItem(ItemID,ItemName,ItemUnit,CurrentRate)
         if err != True:
             return response.styler(204)
         return response.styler(400)
 
-    def put(self,IteemID):
+    def put(self,ItemID):
         ItemName=request.form["ItemName"]
         ItemUnit=request.form["ItemUnit"]
         CurrentRate=request.form["CurrentRate"]

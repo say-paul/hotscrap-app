@@ -4,3 +4,5 @@ def dltItem(ItemID):
     query=("DELETE FROM ItemRateChart WHERE ItemID=%s")
     params=(ItemID)
     return db.delete(query,params)
+
+    

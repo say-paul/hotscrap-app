@@ -49,3 +49,5 @@ class Db:
             return True
         self.mariadb_connection.commit()
         return self.cursor.lastrowid
+
+        
