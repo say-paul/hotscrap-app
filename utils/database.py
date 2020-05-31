@@ -38,7 +38,7 @@ class Db:
             print("Error: {}".format(error))
             return True
         self.mariadb_connection.commit()
-        return self.cursor.lastrowid
+        return ("successful")
 
     def delete(self,query,params):
         try:
@@ -48,6 +48,6 @@ class Db:
             print("Error: {}".format(error))
             return True
         self.mariadb_connection.commit()
-        return self.cursor.lastrowid
+        return ("successful")
 
         

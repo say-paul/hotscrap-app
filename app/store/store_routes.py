@@ -23,7 +23,7 @@ class Item(Resource):
         ItemName=request.form["ItemName"]
         ItemUnit=request.form["ItemUnit"]
         CurrentRate=request.form["CurrentRate"]
-        err=put_item.updateInfo(ItemID,ItemName,ItemUnit,CurrentRate)
+        err=put_item.updateInfo(ItemName,ItemUnit,CurrentRate,ItemID)
         if err!=True:
             return response.styler(204)
         return response.styler(400)
