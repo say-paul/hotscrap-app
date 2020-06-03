@@ -3,7 +3,7 @@ from utils import response
 from store import get_item,post_item,put_item,delete_item
 from flask import request
 class Item(Resource):
-    
+
     def get(self,ItemID):
         endpoint="store"
         key, data = get_item.findItem(ItemID)
@@ -24,10 +24,16 @@ class Item(Resource):
         return response.styler(400)
 
     def put(self,ItemID):
-        ItemName=request.args.get ('ItemName')
-        ItemUnit=request.args.get('ItemUnit')
-        CurrentRate=request.args.get("CurrentRate")
-        err=put_item.updateInfo(ItemName,ItemUnit,CurrentRate,ItemID)
+        ItemName, ItemUnit, CurrentRate = None, None, None
+        if request.form.get('ItemName', None):
+            ItemName = request.form['ItemName']
+        if request.form.get('ItemUnit', None):
+            ItemUnit = request.form['ItemUnit']
+        if request.form.get('CurrentRate', None):
+            CurrentRate = request.form["CurrentRate"]
+        print("The values are , {} , {} , {}".format(ItemName, ItemUnit,
+                                                     CurrentRate))
+        err = put_item.updateInfo(ItemID,ItemName, ItemUnit, CurrentRate)
         if err!=True:
             return response.styler(204)
         return response.styler(400)
@@ -37,5 +43,3 @@ class Item(Resource):
         if err!= True:
             return response.styler(204)
         return response.styler(404)
-        
-

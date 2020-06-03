@@ -1,17 +1,17 @@
 from utils import database
 
-def updateInfo(ItemName,ItemUnit,CurrentRate,ItemID):
-    db= database.Db()
-    print("you are updating data for itemid : ")
-    print(ItemID,ItemName,ItemUnit,CurrentRate)
-    params={"ItemName" : ItemName,"ItemUnit" : ItemUnit,"CurrentRate": CurrentRate}
-    d="UPDATE ItemRateChart set "
-    for key in params:
-        print(key)
-        if params[key]!= None:
-            d+=key+"="+str(params[key])+" "
-    d+="WHERE ItemID = {}".format(ItemID)
-    query='("'+d+'")'
-    print(query)
-    return db.update(query,params)
 
+def updateInfo(ItemID,ItemName=None, ItemUnit=None, CurrentRate=None):
+    db= database.Db()
+    print("you are updating data for id : {}".format(ItemID))
+    print(ItemName,ItemUnit,CurrentRate)
+    args={"ItemName" : ItemName,"ItemUnit" : ItemUnit,"CurrentRate": CurrentRate}
+    query="UPDATE ItemRateChart set "
+    params = ()
+    for key in args:
+        if args[key]!= None:
+            query += key + "=" + "%s "
+            params += (args[key], )
+    query += "WHERE ItemID=%s"
+    params += (ItemID,)
+    return db.update(query,params)
