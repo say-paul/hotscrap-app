@@ -40,14 +40,20 @@ class Db:
         self.mariadb_connection.commit()
         return ("successful")
 
-    def delete(self,query,params):
+    def dlt(self,query,params):
         try:
             self.cursor.execute(query,params)
             print(self.cursor.rowcount, "row deleted")
         except mariadb.Error as error:
             print("Error: {}".format(error))
-            return True
+            return ("failed")
         self.mariadb_connection.commit()
         return (self.cursor.rowcount)
 
-        
+    def getall(self,query):
+        try:
+            self.cursor.execute(query)
+        except mariadb.Error as error:
+            print("Error: {}".format(error))
+            return ""
+        return self.cursor.column_names, self.cursor.fetchall()

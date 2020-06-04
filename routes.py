@@ -7,7 +7,7 @@ app = Flask(__name__)
 api = Api(app)
 
 api.add_resource(user_routes.User, '/user/<string:mobile_num>')
+api.add_resource(store_routes.Table,'/store', endpoint="Table")
 
 api.add_resource(store_routes.Item,'/store/<string:ItemID>',endpoint= "Item")
 api.add_resource(store_routes.Item,'/store', endpoint="addItem")
-api.add_resource(store_routes.Table,'/store',endpoint= "getTable")

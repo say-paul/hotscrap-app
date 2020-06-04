@@ -1,18 +1,15 @@
 from flask_restful import Resource
 from utils import response
-from store import get_item,post_item,put_item,delete_item
+from store import get_item,post_item,put_item,delete_item,get_table
 from flask import request
 class Item(Resource):
 
     def get(self,ItemID):
-        endpoint="store"
         key, data = get_item.findItem(ItemID)
-        print(endpoint)
         if len(data) == 0:
-            return response.styler(404)
+           return response.styler(404)
         itemdetails = dict(zip(key,data[0]))
-
-        return response.styler(200, itemdetails)
+        return itemdetails
 
     def post(self):
         ItemName= request.form["ItemName"]
@@ -35,21 +32,26 @@ class Item(Resource):
                                                      CurrentRate))
         err = put_item.updateInfo(ItemID,ItemName, ItemUnit, CurrentRate)
         if err!=True:
-            return response.styler(204)
+            return response.styler(203)
         return response.styler(400)
 
     def delete(self,ItemID):
 
         err=delete_item.dltItem(ItemID)
         print(err)
-        if err!= True:
-            return response.styler(204)
-        return response.styler(404)
+        if err!= "failed" and err!=0:
+            return response.styler(203)
+            
+        return response.styler(400)
+            
 
 class Table(Resource):
     def get(self):
         key,data= get_table.getTable()
         if len(data)==0:
             return response.styler(404)
-        dictionary=dict(zip(key,data))
-        return response.styler(200,dictionary)
+        a=[]
+        for i in range(len(data)):
+            d= dict(zip(key,data[i]))
+            a.append(d)
+        return (a)
