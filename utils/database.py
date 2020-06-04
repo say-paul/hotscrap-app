@@ -48,6 +48,6 @@ class Db:
             print("Error: {}".format(error))
             return True
         self.mariadb_connection.commit()
-        return ("successful")
+        return (self.cursor.rowcount)
 
         

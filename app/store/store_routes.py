@@ -39,7 +39,17 @@ class Item(Resource):
         return response.styler(400)
 
     def delete(self,ItemID):
+
         err=delete_item.dltItem(ItemID)
+        print(err)
         if err!= True:
             return response.styler(204)
         return response.styler(404)
+
+class Table(Resource):
+    def get(self):
+        key,data= get_table.getTable()
+        if len(data)==0:
+            return response.styler(404)
+        dictionary=dict(zip(key,data))
+        return response.styler(200,dictionary)
